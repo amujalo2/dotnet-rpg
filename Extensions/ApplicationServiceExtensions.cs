@@ -1,5 +1,7 @@
-﻿using dotnet_rpg.Data;
-using dotnet_rpg.Services;
+﻿using dotnet_rpg.Controller;
+using dotnet_rpg.Data;
+using dotnet_rpg.Services.CharacterService;
+using dotnet_rpg.Services.WeaponService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -29,6 +31,7 @@ namespace dotnet_rpg.Extensions
             services.AddAutoMapper(typeof(Program).Assembly);
             services.AddScoped<ICharacterService, CharacterService>();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IWeaponService, WeaponService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(opt =>
                     {
@@ -41,6 +44,7 @@ namespace dotnet_rpg.Extensions
                             ValidateAudience = false
                         };
                     });
+            services.AddHttpContextAccessor();
             return services;
         }
     }
