@@ -1,6 +1,7 @@
 ﻿using dotnet_rpg.Controller;
 using dotnet_rpg.Data;
 using dotnet_rpg.Services.CharacterService;
+using dotnet_rpg.Services.FightService;
 using dotnet_rpg.Services.WeaponService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -31,6 +32,7 @@ namespace dotnet_rpg.Extensions
             services.AddAutoMapper(typeof(Program).Assembly);
             services.AddScoped<ICharacterService, CharacterService>();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IFightService, FightService>();
             services.AddScoped<IWeaponService, WeaponService>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddJwtBearer(opt =>
